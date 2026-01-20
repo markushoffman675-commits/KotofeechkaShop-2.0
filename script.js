@@ -41,11 +41,11 @@ const orderForm = document.getElementById('order-form');
 // ========== НАСТРОЙКА ТЕЛЕГРАМ БОТА ==========
 // Конфигурация для отправки уведомлений в Telegram
 
-// Токен вашего Telegram бота (получается у @BotFather)
-const TELEGRAM_BOT_TOKEN = 'ВАШ_ТОКЕН_БОТА';
+// Токен Telegram бота
+const TELEGRAM_BOT_TOKEN = '7827586203:AAFK0Ui8eV8hrTWZ3cnjiEzyDHOs3Fxm44Q';
 
-// ID чата, куда будут отправляться уведомления (ваш ID или ID группы)
-const TELEGRAM_CHAT_ID = 'ВАШ_CHAT_ID';
+// ID чата
+const TELEGRAM_CHAT_ID = 'https://t.me/+qlmHk9mNIcw0Mjdi';
 
 // Базовый URL API Telegram для отправки сообщений
 const TELEGRAM_API_URL = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
@@ -544,4 +544,5 @@ window.onerror = function(message, source, lineno, colno, error) {
         error
     });
     return true; // Предотвращение вывода стандартного сообщения об ошибке
+
 };
