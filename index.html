@@ -1,17 +1,16 @@
-html
 <!DOCTYPE html>
-<!-- Объявление типа документа HTML5 -->
+<!-- Объявление типа док.HTML5 -->
 <html lang="ru">
-<!-- Корневой элемент HTML с указанием языка -->
+<!-- указание языка -->
 
 <head>
     <!-- Секция с метаданными и подключением ресурсов -->
     
     <meta charset="UTF-8">
-    <!-- Установка кодировки UTF-8 для поддержки кириллицы -->
+    <!-- Установка кодировки для поддержки кириллицы -->
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Настройка адаптивного отображения на мобильных устройствах -->
+    <!-- Настройка отображения на мобильных устройствах -->
     
     <title>Kotofeechka - Изделия из эпоксидной смолы ручной работы</title>
     <!-- Заголовок страницы во вкладке браузера -->
@@ -20,7 +19,7 @@ html
     <!-- Подключение внешнего файла стилей -->
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Подключение библиотеки Font Awesome для иконок -->
+    <!-- Подключение библиотеки для иконок -->
 </head>
 
 <body>
@@ -59,7 +58,7 @@ html
                     <a href="#"><i class="fas fa-user"></i></a>
                     <!-- Иконка профиля пользователя -->
                     <a href="#" id="cart-icon">
-                        <!-- Иконка корзины с ID для JavaScript -->
+                        <!-- Иконка корзины с ID для JS -->
                         <i class="fas fa-shopping-cart"></i>
                         <!-- Иконка корзины -->
                         <span class="cart-count">0</span>
@@ -72,9 +71,9 @@ html
 
     <!-- Модальное окно корзины -->
     <div id="cart-modal" class="cart-modal">
-        <!-- Модальное окно корзины с ID для JavaScript -->
+        <!-- Мод. окно корзины с ID для JS -->
         <div class="cart-content">
-            <!-- Содержимое модального окна -->
+            <!-- Содержимое мод. окна -->
             
             <span class="close-cart">&times;</span>
             <!-- Кнопка закрытия окна (крестик) -->
@@ -96,7 +95,7 @@ html
             
             <!-- Форма оформления заказа -->
             <form id="order-form" class="cart-form">
-                <!-- Форма с ID для JavaScript -->
+                <!-- Форма с ID для JS -->
                 <h3>Данные для заказа</h3>
                 <!-- Заголовок формы -->
                 
@@ -134,7 +133,7 @@ html
                 <button class="cart-btn continue-shopping">Продолжить покупки</button>
                 <!-- Кнопка продолжения покупок -->
                 <button id="send-order-btn" class="cart-btn send-order">Отправить продавцу</button>
-                <!-- Кнопка отправки заказа с ID для JavaScript -->
+                <!-- Кнопка отправки заказа с ID для JS -->
             </div>
         </div>
     </div>
@@ -446,4 +445,5 @@ html
     <script src="script.js"></script>
     <!-- Файл с основной логикой сайта -->
 </body>
+
 </html>
