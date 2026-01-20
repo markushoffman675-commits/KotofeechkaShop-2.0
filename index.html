@@ -1,0 +1,449 @@
+html
+<!DOCTYPE html>
+<!-- Объявление типа документа HTML5 -->
+<html lang="ru">
+<!-- Корневой элемент HTML с указанием языка -->
+
+<head>
+    <!-- Секция с метаданными и подключением ресурсов -->
+    
+    <meta charset="UTF-8">
+    <!-- Установка кодировки UTF-8 для поддержки кириллицы -->
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Настройка адаптивного отображения на мобильных устройствах -->
+    
+    <title>Kotofeechka - Изделия из эпоксидной смолы ручной работы</title>
+    <!-- Заголовок страницы во вкладке браузера -->
+    
+    <link rel="stylesheet" href="style.css">
+    <!-- Подключение внешнего файла стилей -->
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Подключение библиотеки Font Awesome для иконок -->
+</head>
+
+<body>
+    <!-- Основное содержимое страницы -->
+
+    <!-- Шапка сайта -->
+    <header>
+        <div class="container">
+            <!-- Контейнер для центрирования содержимого -->
+            <div class="header-top">
+                <!-- Верхняя часть шапки -->
+                
+                <!-- Логотип -->
+                <div class="logo">
+                    <div class="logo-text">Kotofeechka</div>
+                    <!-- Основной текст логотипа -->
+                    <div class="logo-subtext">Эпоксидная смола ручной работы</div>
+                    <!-- Подпись под логотипом -->
+                </div>
+                
+                <!-- Навигационное меню -->
+                <nav class="nav-links">
+                    <!-- Навигационные ссылки -->
+                    <a href="#home">Главная</a>
+                    <a href="#categories">Категории</a>
+                    <a href="#products">Товары</a>
+                    <a href="#about">О нас</a>
+                    <a href="#contact">Контакты</a>
+                </nav>
+                
+                <!-- Иконки действий -->
+                <div class="header-icons">
+                    <!-- Контейнер для иконок -->
+                    <a href="#"><i class="fas fa-search"></i></a>
+                    <!-- Иконка поиска -->
+                    <a href="#"><i class="fas fa-user"></i></a>
+                    <!-- Иконка профиля пользователя -->
+                    <a href="#" id="cart-icon">
+                        <!-- Иконка корзины с ID для JavaScript -->
+                        <i class="fas fa-shopping-cart"></i>
+                        <!-- Иконка корзины -->
+                        <span class="cart-count">0</span>
+                        <!-- Счетчик товаров в корзине -->
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Модальное окно корзины -->
+    <div id="cart-modal" class="cart-modal">
+        <!-- Модальное окно корзины с ID для JavaScript -->
+        <div class="cart-content">
+            <!-- Содержимое модального окна -->
+            
+            <span class="close-cart">&times;</span>
+            <!-- Кнопка закрытия окна (крестик) -->
+            
+            <h2 class="cart-title">Корзина</h2>
+            <!-- Заголовок корзины -->
+            
+            <div id="cart-items" class="cart-items">
+                <!-- Контейнер для товаров в корзине -->
+                <div class="cart-empty">Корзина пуста</div>
+                <!-- Сообщение при пустой корзине -->
+            </div>
+            
+            <div class="cart-total">
+                <!-- Блок с общей суммой заказа -->
+                Итого: <span id="cart-total-price">0</span> ₽
+                <!-- Элемент для отображения суммы -->
+            </div>
+            
+            <!-- Форма оформления заказа -->
+            <form id="order-form" class="cart-form">
+                <!-- Форма с ID для JavaScript -->
+                <h3>Данные для заказа</h3>
+                <!-- Заголовок формы -->
+                
+                <!-- Поле для имени -->
+                <div class="form-group">
+                    <label for="customer-name">Ваше имя *</label>
+                    <!-- Подпись к полю -->
+                    <input type="text" id="customer-name" required>
+                    <!-- Поле ввода с обязательным заполнением -->
+                </div>
+                
+                <!-- Поле для телефона -->
+                <div class="form-group">
+                    <label for="customer-phone">Номер телефона *</label>
+                    <input type="tel" id="customer-phone" required>
+                </div>
+                
+                <!-- Поле для email -->
+                <div class="form-group">
+                    <label for="customer-email">Email *</label>
+                    <input type="email" id="customer-email" required>
+                </div>
+                
+                <!-- Поле для комментария -->
+                <div class="form-group">
+                    <label for="customer-comment">Комментарий к заказу</label>
+                    <textarea id="customer-comment" placeholder="Пожелания, вопросы и т.д."></textarea>
+                    <!-- Текстовое поле с подсказкой -->
+                </div>
+            </form>
+            
+            <!-- Кнопки действий в корзине -->
+            <div class="cart-actions">
+                <!-- Контейнер для кнопок -->
+                <button class="cart-btn continue-shopping">Продолжить покупки</button>
+                <!-- Кнопка продолжения покупок -->
+                <button id="send-order-btn" class="cart-btn send-order">Отправить продавцу</button>
+                <!-- Кнопка отправки заказа с ID для JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Главный баннер -->
+    <section class="hero" id="home">
+        <!-- Секция главного баннера с якорем для навигации -->
+        <div class="container">
+            <h1>Уникальные изделия из эпоксидной смолы</h1>
+            <!-- Основной заголовок баннера -->
+            <p>Каждое изделие создается вручную с любовью и вниманием к деталям. Порадуйте себя украшением, которое станет частью вашей истории.</p>
+            <!-- Описание под заголовком -->
+            <a href="#products" class="btn">Смотреть каталог</a>
+            <!-- Кнопка-ссылка на каталог -->
+        </div>
+    </section>
+
+    <!-- Раздел категорий товаров -->
+    <section class="container" id="categories">
+        <!-- Секция категорий с якорем -->
+        <h2 class="section-title">Категории товаров</h2>
+        <!-- Заголовок раздела -->
+        <div class="categories">
+            <!-- Контейнер для карточек категорий -->
+            
+            <!-- Карточка категории 1 -->
+            <div class="category-card">
+                <img src="images/smola_na_shee.jpg" alt="Украшения" class="category-img">
+                <!-- Изображение категории -->
+                <div class="category-info">
+                    <!-- Информация о категории -->
+                    <h3>Украшения</h3>
+                    <!-- Заголовок категории -->
+                    <p>Кулоны, кольца и браслеты</p>
+                    <!-- Описание категории -->
+                </div>
+            </div>
+            
+            <!-- Карточка категории 2 -->
+            <div class="category-card">
+                <img src="images/pepel.jpg" alt="Интерьер" class="category-img">
+                <div class="category-info">
+                    <h3>Декор</h3>
+                    <p>Подсвечники, пепельницы, подставки</p>
+                </div>
+            </div>
+            
+            <!-- Карточка категории 3 -->
+            <div class="category-card">
+                <img src="images/84289377-a218-42da-bbac-d6b34bc8d764.jpg" alt="Аксессуары" class="category-img">
+                <div class="category-info">
+                    <h3>Аксессуары</h3>
+                    <p>Броши, брелоки, медиаторы</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Раздел популярных товаров -->
+    <section class="container" id="products">
+        <!-- Секция товаров с якорем -->
+        <h2 class="section-title">Популярные товары</h2>
+        <div class="products">
+            <!-- Контейнер для карточек товаров -->
+            
+            <!-- Товар 1 -->
+            <div class="product-card">
+                <img src="images/2a161f2e-bc4b-479d-a060-5be8d2af5ef8.jpg" alt="Кулон с цветами" class="product-img">
+                <div class="product-info">
+                    <h3 class="product-title">Кулон "Весенний цветок"</h3>
+                    <!-- Название товара -->
+                    <p class="product-description">Изящный кулон с засушенными цветами. Каждый элемент уникален.</p>
+                    <!-- Описание товара -->
+                    <div class="product-meta">
+                        <!-- Мета-информация о товаре -->
+                        <span>В наличии: 1 шт</span>
+                        <!-- Наличие товара -->
+                        <span><i class="fas fa-star"></i> 4.9</span>
+                        <!-- Рейтинг товара -->
+                    </div>
+                    <div class="product-price">1000 ₽</div>
+                    <!-- Цена товара -->
+                    <button class="add-to-cart" 
+                            data-id="1" 
+                            data-title="Кулон 'Весенний цветок'" 
+                            data-price="1000" 
+                            data-image="images/2a161f2e-bc4b-479d-a060-5be8d2af5ef8.jpg">
+                        <!-- Кнопка добавления в корзину с data-атрибутами -->
+                        В корзину
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Товар 2 -->
+            <div class="product-card">
+                <img src="images/cadc52c6-6824-4cc2-ab6b-39e246b45d3b.jpg" alt="Кулон с сухоцветами" class="product-img">
+                <div class="product-info">
+                    <h3 class="product-title">Кулон "Нежность"</h3>
+                    <p class="product-description">Кулон с мелкими сухоцветами. Подходят для повседневного образа.</p>
+                    <div class="product-meta">
+                        <span>В наличии: 1 шт</span>
+                        <span><i class="fas fa-star"></i> 4.8</span>
+                    </div>
+                    <div class="product-price">1000 ₽</div>
+                    <button class="add-to-cart" 
+                            data-id="2" 
+                            data-title="Кулон 'Нежность'" 
+                            data-price="1000" 
+                            data-image="images/cadc52c6-6824-4cc2-ab6b-39e246b45d3b.jpg">
+                        В корзину
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Товар 3 -->
+            <div class="product-card">
+                <img src="images/kulon_volna.jpg" alt="кулон морской" class="product-img">
+                <div class="product-info">
+                    <h3 class="product-title">Кулон "Морская волна"</h3>
+                    <p class="product-description">Кулон с синими оттенками и блестками, напоминающими морскую гладь.</p>
+                    <div class="product-meta">
+                        <span>В наличии: 1 шт</span>
+                        <span><i class="fas fa-star"></i> 5.0</span>
+                    </div>
+                    <div class="product-price">1000 ₽</div>
+                    <button class="add-to-cart" 
+                            data-id="3" 
+                            data-title="Кулон 'Морская волна'" 
+                            data-price="1000" 
+                            data-image="images/kulon_volna.jpg">
+                        В корзину
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Товар 4 -->
+            <div class="product-card">
+                <img src="images/cf2a23ad-7366-4ede-8539-8c20ecb505fb.jpg" alt="Шкатулка Сердце" class="product-img">
+                <div class="product-info">
+                    <h3 class="product-title">Шкатулка "Сердце"</h3>
+                    <p class="product-description">Уникальная шкатулка в виде сердца.</p>
+                    <div class="product-meta">
+                        <span>В наличии: 1 шт</span>
+                        <span><i class="fas fa-star"></i> 4.7</span>
+                    </div>
+                    <div class="product-price">2 500 ₽</div>
+                    <button class="add-to-cart" 
+                            data-id="4" 
+                            data-title="Шкатулка 'Сердце'" 
+                            data-price="2500" 
+                            data-image="images/cf2a23ad-7366-4ede-8539-8c20ecb505fb.jpg">
+                        В корзину
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Раздел "О нас" -->
+    <section class="container" id="about">
+        <!-- Секция "О нас" с якорем -->
+        <div class="about">
+            <h2 class="section-title">О Kotofeechka</h2>
+            <div class="about-content">
+                <!-- Двухколоночный контейнер -->
+                <div class="about-text">
+                    <!-- Текстовая колонка -->
+                    <h2>История создания бренда</h2>
+                    <p>Kotofeechka — это мастерская, где рождаются уникальные изделия из эпоксидной смолы. Мы начали свой путь в 2022 году с небольших украшений для друзей, а сегодня создаем коллекции, которые расходятся по многим городам России.</p>
+                    <p>Каждое изделие создается вручную: от идеи до финальной полировки. Мы используем только качественные материалы, уделяя внимание каждой детали. Наша философия — создавать не просто вещи, а эмоции и воспоминания.</p>
+                    <p>В работе мы часто используем природные материалы. Это делает каждое изделие по-настоящему уникальным.</p>
+                    <a href="#contact" class="btn">Связаться с нами</a>
+                    <!-- Кнопка связи -->
+                </div>
+                <div>
+                    <!-- Колонка с изображением -->
+                    <img src="images/2c9ab7ad-7cb9-44a1-a994-c4e9e9d280dc.jpg" alt="Мастерская" class="about-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Раздел преимуществ -->
+    <section class="container">
+        <!-- Секция преимуществ -->
+        <h2 class="section-title">Почему выбирают нас</h2>
+        <div class="features">
+            <!-- Контейнер для карточек преимуществ -->
+            
+            <!-- Преимущество 1 -->
+            <div class="feature">
+                <i class="fas fa-hand-sparkles"></i>
+                <!-- Иконка преимущества -->
+                <h3>Ручная работа</h3>
+                <p>Каждое изделие уникально и создается с любовью и вниманием к деталям</p>
+            </div>
+            
+            <!-- Преимущество 2 -->
+            <div class="feature">
+                <i class="fas fa-award"></i>
+                <h3>Качественные материалы</h3>
+                <p>Используем только проверенные материалы от надежных поставщиков</p>
+            </div>
+            
+            <!-- Преимущество 3 -->
+            <div class="feature">
+               <i class="fa-solid fa-puzzle-piece"></i>
+                <h3>Уникальные детали</h3>
+                <p>Мы самостоятельно высушиваем цветы, подбираем декор, печатаем фото</p>
+            </div>
+            
+            <!-- Преимущество 4 -->
+            <div class="feature">
+                <i class="fas fa-gift"></i>
+                <h3>Упаковка</h3>
+                <p>Надежная и красивая упаковка сохранит целостность покупки</p>
+            </div>
+
+            <!-- Преимущество 5 -->
+            <div class="feature">
+                <i class="fas fa-shipping-fast"></i>
+                <h3>Быстрая доставка</h3>
+                <p>Отправляем заказы в день оформления. Доставка по всей России</p>
+            </div>
+
+            <!-- Преимущество 6 -->
+            <div class="feature">
+               <i class="fa-regular fa-face-kiss-wink-heart"></i>
+                <h3>Индивидуальный подход</h3>
+                <p>Мы всегда внимательно прислушиваемся к пожеланиям заказчика</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Форма подписки на рассылку -->
+    <section class="container">
+        <!-- Секция подписки -->
+        <div class="newsletter">
+            <h2>Подпишитесь на новости</h2>
+            <p>Узнавайте первыми о новых коллекциях, акциях и мастер-классах. Получите скидку 10% на первый заказ после подписки!</p>
+            <form class="newsletter-form">
+                <!-- Форма подписки -->
+                <input type="email" placeholder="Ваш e-mail" class="newsletter-input" required>
+                <!-- Поле для email -->
+                <button type="submit" class="newsletter-btn">Подписаться</button>
+                <!-- Кнопка подписки -->
+            </form>
+        </div>
+    </section>
+
+    <!-- Подвал сайта -->
+    <footer id="contact">
+        <!-- Подвал с якорем для контактов -->
+        <div class="container">
+            <div class="footer-content">
+                <!-- Трехколоночный контейнер подвала -->
+                
+                <!-- Колонка 1: О компании -->
+                <div>
+                    <div class="footer-logo">Kotofeechka</div>
+                    <!-- Логотип в подвале -->
+                    <p>Мастерская изделий из эпоксидной смолы ручной работы. Создаем уникальные вещи с 2022 года.</p>
+                    <!-- Описание компании -->
+                    <div class="social-icons">
+                        <!-- Иконки социальных сетей -->
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Колонка 2: Навигация -->
+                <div class="footer-links">
+                    <h3>Категории</h3>
+                    <!-- Заголовок колонки -->
+                    <ul>
+                        <!-- Список ссылок -->
+                        <li><a href="#">Украшения</a></li>
+                        <li><a href="#">Декор</a></li>
+                        <li><a href="#">Аксессуары</a></li>
+                        <li><a href="#">Новинки</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Колонка 3: Контакты -->
+                <div class="footer-contact">
+                    <h3>Контакты</h3>
+                    <p><i class="fas fa-envelope"></i> inniamia@gmail.com</p>
+                    <!-- Email -->
+                    <p><i class="fas fa-phone"></i> +7 (999) 123-45-67</p>
+                    <!-- Телефон -->
+                    <p><i class="fas fa-map-marker-alt"></i> Москва, ул. Котофеева, 1</p>
+                    <!-- Адрес -->
+                    <p><i class="fas fa-clock"></i> Пн-Пт: 10:00-19:00</p>
+                    <!-- Время работы -->
+                </div>
+            </div>
+            
+            <!-- Блок с авторскими правами -->
+            <div class="copyright">
+                <p>&copy; 2026 Kotofeechka. Все права защищены.</p>
+                <!-- Текст копирайта -->
+            </div>
+        </div>
+    </footer>
+
+    <!-- Подключение внешнего JavaScript файла -->
+    <script src="script.js"></script>
+    <!-- Файл с основной логикой сайта -->
+</body>
+</html>
