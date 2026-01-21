@@ -45,7 +45,7 @@ const orderForm = document.getElementById('order-form');
 const TELEGRAM_BOT_TOKEN = '7827586203:AAFK0Ui8eV8hrTWZ3cnjiEzyDHOs3Fxm44Q';
 
 // ID чата
-const TELEGRAM_CHAT_ID = '5235197474';
+const TELEGRAM_CHAT_ID = '5282931596';
 
 // Базовый URL API Telegram для отправки сообщений
 const TELEGRAM_API_URL = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
@@ -546,4 +546,5 @@ window.onerror = function(message, source, lineno, colno, error) {
     return true; // Предотвращение вывода стандартного сообщения об ошибке
 
 };
+
 
