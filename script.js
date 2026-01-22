@@ -1,20 +1,15 @@
 // ========== ОСНОВНАЯ ЛОГИКА САЙТА ==========
-// Файл содержит весь JavaScript код для функциональности сайта
+// JavaScript для функциональности сайта
 
-// Инициализация переменной корзины
-// Массив для хранения товаров, добавленных в корзину
 let cart = [];
-
-// ========== ПОЛУЧЕНИЕ ССЫЛОК НА DOM-ЭЛЕМЕНТЫ ==========
-// Сохранение ссылок на HTML-элементы для дальнейшей работы с ними
 
 // Иконка корзины в шапке сайта
 const cartIcon = document.getElementById('cart-icon');
 
-// Модальное окно корзины
+// Окно корзины
 const cartModal = document.getElementById('cart-modal');
 
-// Кнопка закрытия модального окна корзины (крестик)
+// Кнопка закрытия окна корзины (крестик)
 const closeCart = document.querySelector('.close-cart');
 
 // Контейнер для отображения товаров в корзине
@@ -29,17 +24,16 @@ const cartCount = document.querySelector('.cart-count');
 // Все кнопки "В корзину" на странице
 const addToCartButtons = document.querySelectorAll('.add-to-cart');
 
-// Кнопка "Продолжить покупки" в модальном окне корзины
+// Кнопка "Продолжить покупки" в окне корзины
 const continueShoppingBtn = document.querySelector('.continue-shopping');
 
-// Кнопка "Отправить продавцу" в модальном окне корзины
+// Кнопка "Отправить продавцу" в окне корзины
 const sendOrderBtn = document.getElementById('send-order-btn');
 
 // Форма с данными покупателя
 const orderForm = document.getElementById('order-form');
 
 // ========== НАСТРОЙКА ТЕЛЕГРАМ БОТА ==========
-// Конфигурация для отправки уведомлений в Telegram
 
 // Токен Telegram бота
 const TELEGRAM_BOT_TOKEN = '7827586203:AAFK0Ui8eV8hrTWZ3cnjiEzyDHOs3Fxm44Q';
@@ -47,32 +41,32 @@ const TELEGRAM_BOT_TOKEN = '7827586203:AAFK0Ui8eV8hrTWZ3cnjiEzyDHOs3Fxm44Q';
 // ID чата
 const TELEGRAM_CHAT_ID = '-5282931596';
 
-// Базовый URL API Telegram для отправки сообщений
+// URL API Telegram для отправки сообщений
 const TELEGRAM_API_URL = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
 
-// ========== ОТКРЫТИЕ И ЗАКРЫТИЕ МОДАЛЬНОГО ОКНА КОРЗИНЫ ==========
+// ========== ОТКРЫТИЕ И ЗАКРЫТИЕ ОКНА КОРЗИНЫ ==========
 
 // Обработчик клика по иконке корзины в шапке сайта
 cartIcon.addEventListener('click', (e) => {
     e.preventDefault(); // Отмена стандартного поведения ссылки
-    cartModal.style.display = 'flex'; // Отображение модального окна
+    cartModal.style.display = 'flex'; // Отображение окна
     updateCartDisplay(); // Обновление содержимого корзины
 });
 
-// Обработчик клика по кнопке закрытия модального окна
+// Обработчик клика по кнопке закрытия окна
 closeCart.addEventListener('click', () => {
-    cartModal.style.display = 'none'; // Скрытие модального окна
+    cartModal.style.display = 'none'; // Скрытие окна
 });
 
 // Обработчик клика по кнопке "Продолжить покупки"
 continueShoppingBtn.addEventListener('click', () => {
-    cartModal.style.display = 'none'; // Скрытие модального окна
+    cartModal.style.display = 'none'; // Скрытие окна
 });
 
-// Обработчик клика по фону модального окна для его закрытия
+// Обработчик клика по фону окна для его закрытия
 window.addEventListener('click', (e) => {
     if (e.target === cartModal) {
-        cartModal.style.display = 'none'; // Скрытие модального окна при клике на фон
+        cartModal.style.display = 'none'; // Скрытие окна при клике на фон
     }
 });
 
@@ -81,17 +75,17 @@ window.addEventListener('click', (e) => {
 // Добавление обработчиков событий ко всем кнопкам "В корзину"
 addToCartButtons.forEach(button => {
     button.addEventListener('click', () => {
-        // Получение данных о товаре из data-атрибутов кнопки
+        // Получение данных о товаре
         const id = button.getAttribute('data-id'); // Уникальный идентификатор товара
         const title = button.getAttribute('data-title'); // Название товара
-        const price = parseInt(button.getAttribute('data-price')); // Цена товара (преобразование в число)
+        const price = parseInt(button.getAttribute('data-price')); // Цена товара
         const image = button.getAttribute('data-image'); // Путь к изображению товара
         
         addToCart(id, title, price, image); // Вызов функции добавления товара в корзину
         
         // Визуальная обратная связь при добавлении товара
         button.textContent = 'Добавлено!'; // Изменение текста кнопки
-        button.style.backgroundColor = '#4CAF50'; // Изменение цвета фона кнопки на зеленый
+        button.style.backgroundColor = '#4CAF50'; // Цвет фона кнопки (зеленый)
         
         // Возврат к исходному виду кнопки через 1 секунду
         setTimeout(() => {
@@ -115,10 +109,10 @@ function addToCart(id, title, price, image) {
     const existingItem = cart.find(item => item.id === id);
     
     if (existingItem) {
-        // Если товар уже есть в корзине, увеличиваем его количество
+        // Если товар уже есть в корзине, увеличивается его количество
         existingItem.quantity += 1;
     } else {
-        // Если товара нет в корзине, добавляем новый объект товара
+        // Если товара нет в корзине, добавляется новый объект товара
         cart.push({
             id,        // Идентификатор товара
             title,     // Название товара
@@ -137,7 +131,6 @@ function addToCart(id, title, price, image) {
  */
 function updateCartCount() {
     // Вычисление общего количества товаров в корзине
-    // reduce() суммирует quantity всех товаров
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
     
     // Обновление текста счетчика
@@ -209,7 +202,7 @@ function updateCartDisplay() {
     // Добавление обработчиков для кнопок удаления товара
     document.querySelectorAll('.remove-item').forEach(btn => {
         btn.addEventListener('click', (e) => {
-            // Поиск ближайшей кнопки удаления (на случай вложенных элементов)
+            // Поиск ближайшей кнопки удаления
             const id = e.target.closest('.remove-item').getAttribute('data-id');
             removeFromCart(id); // Удаление товара из корзины
         });
@@ -228,11 +221,11 @@ function updateQuantity(id, change) {
     if (item) {
         item.quantity += change; // Изменение количества
         
-        // Если количество стало 0 или меньше, удаляем товар
+        // Если количество стало 0 или меньше, удаляется товар
         if (item.quantity <= 0) {
             removeFromCart(id);
         } else {
-            // Иначе обновляем счетчик и отображение
+            // Иначе обновляется счетчик и отображение
             updateCartCount();
             updateCartDisplay();
         }
@@ -244,7 +237,7 @@ function updateQuantity(id, change) {
  * @param {string} id - Идентификатор товара для удаления
  */
 function removeFromCart(id) {
-    // Фильтрация массива корзины: оставляем только товары, у которых ID не равен удаляемому
+    // Фильтрация корзины: оставляет только товары, у которых ID не равен удаляемому
     cart = cart.filter(item => item.id !== id);
     
     updateCartCount(); // Обновление счетчика
@@ -267,7 +260,7 @@ async function sendTelegramMessage(message) {
             parse_mode: 'HTML' // Режим парсинга HTML для форматирования
         });
         
-        // Отправка POST-запроса к API Telegram
+        // Отправка запроса к Telegram
         const response = await fetch(TELEGRAM_API_URL, {
             method: 'POST',
             headers: {
@@ -401,7 +394,7 @@ ${orderDetails}
             orderForm.reset(); // Сброс формы
             cartModal.style.display = 'none'; // Закрытие модального окна
             
-            // Дополнительно: можно сохранить заказ в localStorage для истории
+            // Возможность сохранить заказ в localStorage для истории
             saveOrderToHistory({
                 name,
                 phone: formattedPhone,
@@ -433,7 +426,7 @@ ${orderDetails}
  */
 function saveOrderToHistory(orderData) {
     try {
-        // Получение текущей истории заказов из localStorage
+        // Получение текущей истории заказов из lS
         const orderHistory = JSON.parse(localStorage.getItem('kotofeechkaOrders')) || [];
         
         // Добавление нового заказа в историю
@@ -443,7 +436,7 @@ function saveOrderToHistory(orderData) {
             status: 'new' // Статус заказа: новый
         });
         
-        // Сохранение обновленной истории в localStorage
+        // Сохранение обновленной истории в lS
         localStorage.setItem('kotofeechkaOrders', JSON.stringify(orderHistory));
         
         console.log('Заказ сохранен в историю');
@@ -454,7 +447,7 @@ function saveOrderToHistory(orderData) {
 
 // ========== ВАЛИДАЦИЯ И ФОРМАТИРОВАНИЕ ТЕЛЕФОНА ==========
 
-// Обработчик события input для поля телефона
+// Обработчик события для поля телефона
 document.getElementById('customer-phone').addEventListener('input', function(e) {
     let value = e.target.value.replace(/\D/g, ''); // Удаление всех нецифровых символов
     
@@ -483,7 +476,7 @@ document.querySelector('.newsletter-form').addEventListener('submit', function(e
     const emailInput = this.querySelector('.newsletter-input');
     const email = emailInput.value.trim();
     
-    // Простая валидация email
+    // Простая валидация эмэил
     if (email && email.includes('@')) {
         alert('Спасибо за подписку! На ваш email отправлено письмо с подтверждением.');
         emailInput.value = ''; // Очистка поля ввода
@@ -529,7 +522,7 @@ document.addEventListener('DOMContentLoaded', initializePage);
 
 // ========== ОБРАБОТКА ОШИБОК ==========
 
-// Глобальный обработчик необработанных ошибок Promise
+// Глобальный обработчик необработанных ошибок
 window.addEventListener('unhandledrejection', function(event) {
     console.error('Необработанная ошибка Promise:', event.reason);
 });
@@ -546,6 +539,7 @@ window.onerror = function(message, source, lineno, colno, error) {
     return true; // Предотвращение вывода стандартного сообщения об ошибке
 
 };
+
 
 
 
